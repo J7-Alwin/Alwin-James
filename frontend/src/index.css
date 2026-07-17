@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-heading {
+    font-family: "Outfit", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 200 20% 12%;
+        --card: 200 30% 98%;
+        --card-foreground: 200 20% 12%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 200 20% 12%;
+        --primary: 200 24% 14%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 200 25% 96%;
+        --secondary-foreground: 200 24% 14%;
+        --muted: 200 25% 96%;
+        --muted-foreground: 200 10% 42%;
+        --accent: 200 25% 96%;
+        --accent-foreground: 200 24% 14%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 200 18% 90%;
+        --input: 200 18% 90%;
+        --ring: 174 80% 30%;
+        --brand: 174 80% 30%;
+        --brand-foreground: 0 0% 100%;
+        --radius: 0.75rem;
+    }
+    .dark {
+        --background: 210 33% 6%;
+        --foreground: 180 12% 94%;
+        --card: 210 28% 9%;
+        --card-foreground: 180 12% 94%;
+        --popover: 210 30% 8%;
+        --popover-foreground: 180 12% 94%;
+        --primary: 180 12% 94%;
+        --primary-foreground: 210 30% 9%;
+        --secondary: 210 22% 13%;
+        --secondary-foreground: 180 12% 94%;
+        --muted: 210 22% 13%;
+        --muted-foreground: 200 10% 60%;
+        --accent: 210 22% 13%;
+        --accent-foreground: 180 12% 94%;
+        --destructive: 0 62.8% 45%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 210 20% 16%;
+        --input: 210 20% 16%;
+        --ring: 166 78% 48%;
+        --brand: 166 78% 48%;
+        --brand-foreground: 210 33% 6%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
+    }
+    ::selection {
+        background: hsl(var(--brand) / 0.25);
+    }
+}
+
+@layer utilities {
+    .grid-bg {
+        background-image:
+            linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+        background-size: 48px 48px;
+    }
+    .mask-fade-x {
+        -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+}
