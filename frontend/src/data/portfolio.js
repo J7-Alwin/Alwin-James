@@ -13,7 +13,7 @@ export const PROFILE = {
   linkedin: "https://www.linkedin.com/in/alwin-james-69b363261",
   resumeUrl: "/assets/resume/Alwin_James_Resume.pdf",
   // Replace with your own professional headshot URL when ready
-  photo: "/assets/alwin.jpeg",
+  photo: "/assets/alwinpic.png",
 };
 
 export const SKILLS = [
