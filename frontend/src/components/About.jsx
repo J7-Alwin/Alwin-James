@@ -1,15 +1,18 @@
 import { motion } from "framer-motion";
-import { Server, Layout, Database, BrainCircuit, Cloud } from "lucide-react";
+import { Server, Layout, Database, BrainCircuit, Cloud, ShieldCheck } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
-import { PROFILE, SKILLS, EXPERIENCE, PROJECTS, CERTIFICATES } from "@/data/portfolio";
+import { PROFILE, WHAT_I_BUILD, SKILLS, EXPERIENCE, PROJECTS, CERTIFICATES } from "@/data/portfolio";
 
-const ICONS = { Server, Layout, Database, BrainCircuit, Cloud };
+const ICONS = { Server, Layout, Database, BrainCircuit, Cloud, ShieldCheck };
 
 export const About = () => {
   return (
     <section id="about" className="py-16 md:py-24 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        <SectionHeading eyebrow="About Me" title="Backend-first engineer with an AI edge" />
+        <SectionHeading
+          eyebrow="About Me"
+          title="Backend-focused developer building AI-powered software"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <motion.div
@@ -17,11 +20,17 @@ export const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-3 lg:col-span-2 rounded-2xl border border-border bg-card p-8"
+            className="md:col-span-3 lg:col-span-2 rounded-2xl border border-border bg-card p-8 flex flex-col justify-between"
             data-testid="about-summary"
           >
-            <p className="text-lg leading-relaxed text-foreground/90">{PROFILE.summary}</p>
-            <div className="mt-6 flex flex-wrap gap-6 text-sm">
+            <div className="space-y-4 text-base sm:text-lg leading-relaxed text-foreground/90">
+              {Array.isArray(PROFILE.summary) ? (
+                PROFILE.summary.map((para, idx) => <p key={idx}>{para}</p>)
+              ) : (
+                <p>{PROFILE.summary}</p>
+              )}
+            </div>
+            <div className="mt-8 flex flex-wrap gap-6 text-sm border-t border-border/60 pt-6">
               <div>
                 <p className="font-heading text-3xl font-bold text-brand">{EXPERIENCE.length}</p>
                 <p className="text-muted-foreground">Internships</p>
@@ -42,19 +51,28 @@ export const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="rounded-2xl border border-border bg-brand/5 p-8 flex flex-col justify-center"
+            className="rounded-2xl border border-border bg-brand/5 p-8 flex flex-col justify-between"
           >
-            <p className="font-heading text-xl font-semibold">What I build</p>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Secure REST APIs, JWT auth & role-based access, scalable MongoDB models, automated workflows, and RAG-powered AI features — all wired to clean React frontends.
-            </p>
+            <div>
+              <p className="font-heading text-xl font-semibold">What I build</p>
+              <div className="mt-5 space-y-4">
+                {(WHAT_I_BUILD || []).map((item) => (
+                  <div key={item.title}>
+                    <h4 className="font-heading text-sm font-semibold text-brand">{item.title}</h4>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
 
         <h3 className="font-heading mt-16 mb-6 text-xl font-semibold tracking-tight">Core Tech Stack</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SKILLS.map((group, i) => {
-            const Icon = ICONS[group.icon];
+            const Icon = ICONS[group.icon] || Server;
             return (
               <motion.div
                 key={group.category}

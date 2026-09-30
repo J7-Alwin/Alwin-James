@@ -142,21 +142,34 @@ export const Projects = () => {
                   </div>
 
                   <div className="mt-8 flex flex-wrap items-center gap-3">
-                    <a href={p.github} target="_blank" rel="noopener noreferrer">
-                      <button
-                        data-testid={`project-code-${p.id}`}
-                        className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold hover:border-brand/50 hover:text-brand hover:-translate-y-0.5 transition-all"
+                    {(p.github || p.githubUrl) && (
+                      <a
+                        href={p.github || p.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block"
                       >
-                        <FaGithub className="h-4 w-4" /> View Code
-                      </button>
-                    </a>
-                    {p.liveUrl && (
-                      <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <button
+                          data-testid={`project-code-${p.id}`}
+                          className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold hover:border-brand/50 hover:text-brand hover:-translate-y-0.5 transition-all shadow-sm"
+                        >
+                          <FaGithub className="h-4 w-4" /> View Code
+                        </button>
+                      </a>
+                    )}
+
+                    {(p.live || p.liveUrl) && (
+                      <a
+                        href={p.live || p.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block"
+                      >
                         <button
                           data-testid={`project-live-${p.id}`}
-                          className="inline-flex items-center gap-2 rounded-full bg-brand text-brand-foreground px-5 py-2.5 text-sm font-semibold hover:bg-brand/90 hover:-translate-y-0.5 transition-all shadow-md shadow-brand/20"
+                          className="inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 text-brand px-5 py-2.5 text-sm font-semibold hover:bg-brand hover:text-background hover:-translate-y-0.5 transition-all shadow-sm"
                         >
-                          <ExternalLink className="h-4 w-4" /> Live Demo / API Docs
+                          <ExternalLink className="h-4 w-4" /> Live Demo
                         </button>
                       </a>
                     )}
