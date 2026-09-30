@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ImageIcon, ChevronLeft, ChevronRight } from "lucide-react";
+import { ImageIcon, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { SectionHeading } from "@/components/SectionHeading";
 import { PROJECTS } from "@/data/portfolio";
@@ -141,14 +141,26 @@ export const Projects = () => {
                     ))}
                   </div>
 
-                  <a href={p.github} target="_blank" rel="noopener noreferrer" className="inline-block">
-                    <button
-                      data-testid={`project-code-${p.id}`}
-                      className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold hover:border-brand/50 hover:text-brand hover:-translate-y-0.5 transition-all"
-                    >
-                      <FaGithub className="h-4 w-4" /> View Code
-                    </button>
-                  </a>
+                  <div className="mt-8 flex flex-wrap items-center gap-3">
+                    <a href={p.github} target="_blank" rel="noopener noreferrer">
+                      <button
+                        data-testid={`project-code-${p.id}`}
+                        className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold hover:border-brand/50 hover:text-brand hover:-translate-y-0.5 transition-all"
+                      >
+                        <FaGithub className="h-4 w-4" /> View Code
+                      </button>
+                    </a>
+                    {p.liveUrl && (
+                      <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <button
+                          data-testid={`project-live-${p.id}`}
+                          className="inline-flex items-center gap-2 rounded-full bg-brand text-brand-foreground px-5 py-2.5 text-sm font-semibold hover:bg-brand/90 hover:-translate-y-0.5 transition-all shadow-md shadow-brand/20"
+                        >
+                          <ExternalLink className="h-4 w-4" /> Live Demo / API Docs
+                        </button>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );
